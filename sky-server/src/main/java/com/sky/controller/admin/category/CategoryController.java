@@ -23,62 +23,80 @@ public class CategoryController {
 
     /**
      * 修改分类
+     *
      * @param categoryDTO
      * @return
      */
     @PutMapping()
     @ApiOperation("修改分类")
-    public Result update(@RequestBody CategoryDTO categoryDTO){
+    public Result update(@RequestBody CategoryDTO categoryDTO) {
         categoryService.update(categoryDTO);
         return Result.success();
     }
 
     /**
      * 根据ID删除分类
+     *
      * @param id
      * @return
      */
     @DeleteMapping()
-    public Result deleteById(@RequestParam Long id){
+    @ApiOperation("删除分类")
+    public Result deleteById(@RequestParam Long id) {
         categoryService.deleteById(id);
         return Result.success();
 
-    }    /**
+    }
+
+    /**
      * 分类分页查询
+     *
      * @param categoryPageQueryDTO
      * @return
      */
     @GetMapping("/page")
     @ApiOperation("分页查询")
-    public Result<PageResult> selectByPage(CategoryPageQueryDTO categoryPageQueryDTO){
+    public Result<PageResult> selectByPage(CategoryPageQueryDTO categoryPageQueryDTO) {
         PageResult data = categoryService.selectByPage(categoryPageQueryDTO);
         return Result.success(data);
     }
 
     /**
      * 启用、禁用分类
+     *
      * @param status
      * @param id
      * @return
      */
     @PostMapping("status/{status}")
-        public Result startORstop(@PathVariable Integer status,@RequestParam Long id){
-        categoryService.update_status(status,id);
+    @ApiOperation("启用禁用菜品状态")
+    public Result startORstop(@PathVariable Integer status, @RequestParam Long id) {
+        categoryService.update_status(status, id);
         return Result.success();
     }
 
     /**
      * 新增分类
+     *
      * @param categoryDTO
      * @return
      */
     @PostMapping()
-    public Result insert(@RequestBody CategoryDTO categoryDTO){
+    @ApiOperation("插入分类")
+    public Result insert(@RequestBody CategoryDTO categoryDTO) {
         categoryService.insert(categoryDTO);
         return Result.success();
     }
+
+    /**
+     * 根据分类查询
+     *
+     * @param type
+     * @return
+     */
     @GetMapping("/list")
-    public Result<Category[]> selectByType(@RequestParam String type){
+    @ApiOperation("根据分类查询")
+    public Result<Category[]> selectByType(@RequestParam String type) {
         Category[] categories = categoryService.selectByType(type);
         return Result.success(categories);
     }

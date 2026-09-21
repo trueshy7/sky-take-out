@@ -46,12 +46,16 @@ sky:
     user-secret-key: itcast
     user-ttl: 7200000000
     user-token-name: authentication
-  alioss:
-    access-key-id: ${sky.alioss.access-key-id}
-    access-key-secret: ${sky.alioss.access-key-secret}
-    endpoint: ${sky.alioss.endpoint}
-    bucket-name: ${sky.alioss.bucket-name}
-
+#  alioss:
+#    access-key-id: ${sky.alioss.access-key-id}
+#    access-key-secret: ${sky.alioss.access-key-secret}
+#    endpoint: ${sky.alioss.endpoint}
+#    bucket-name: ${sky.alioss.bucket-name}
+  minio:
+    endpoint: http://localhost:9000
+    access-key: minioadmin
+    secret-key: minioadmin
+    bucket-name: sky-take-out
   wechat:
     appid: ${sky.wechat.appid}
     secret: ${sky.wechat.secret}

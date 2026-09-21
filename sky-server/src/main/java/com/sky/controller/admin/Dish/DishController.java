@@ -9,6 +9,7 @@ import com.sky.result.Result;
 import com.sky.service.DishService;
 import com.sky.vo.DishVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,10 +35,10 @@ public class DishController {
      * @return
      */
     @PostMapping
+    @ApiOperation("新增菜品")
     public Result insert(@RequestBody DishDTO dishDTO){
         dishService.insert(dishDTO);
         redisTemplate.delete(dishDTO.getCategoryId());
-
         cleanCache("dish_*");
         return Result.success();
     }
